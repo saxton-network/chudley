@@ -9,6 +9,15 @@
 <p align="center"><strong>🤖 Codex. 🤖</strong></p>
 <p align="center"><strong>🦅 Chudley. 🦅</strong></p>
 
+## What Started It All
+
+<p align="center">
+  <strong>The clip responsible for this entire situation.</strong><br>
+  Original viral clip by <a href="https://x.com/WearForbidden">@WearForbidden</a>
+</p>
+
+<!-- GitHub-hosted video attachment URL will be inserted here before merge. -->
+
 **Status:** Windows MVP candidate. Chudley is a local desktop pet for Windows 11 x64. It displays the supplied pixel art in a transparent, always-on-top window. It idles, reacts to clicks, and occasionally plays snack, drink, wave, movement, and personality keyframe sequences. Drag him to a new position. The application makes no API calls and has no telemetry or background service.
 
 ## Run from source
