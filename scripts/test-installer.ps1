@@ -128,7 +128,8 @@ try {
     $first = $null
     if ($RequireVisibleWindow -and !$firstClosedNormally) { throw 'Could not close installed pet through its window' }
     Write-Host "First quit through window=$firstClosedNormally"
-    $second = Start-Process -FilePath $exe -WorkingDirectory $env:TEMP -PassThru
+    $second = Start-Process -FilePath $shortcutPath -PassThru
+    if (!$second) { throw 'Start Menu shortcut did not return the launched Chudley process' }
     Start-Sleep -Seconds 4
     $second.Refresh()
     if ($second.HasExited) { throw 'Installed pet failed to relaunch' }

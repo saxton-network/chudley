@@ -24,6 +24,9 @@ jobs:
       - name: 📦 Build and validate release packages
         shell: pwsh
         run: ./scripts/build-installer.ps1
+      - name: 🧪 Prove installation, launch, parity, and uninstall before attachment
+        shell: pwsh
+        run: ./scripts/test-installer.ps1
       - name: 🎆 Attach installer and portable packages to existing release
         shell: pwsh
         env:
