@@ -149,7 +149,7 @@ The workflow does **not** create or publish a release on its own.
 | `scripts/validate-assets.ps1` | Verifies approved artwork hashes, dimensions, and metadata |
 | `scripts/publish-windows.ps1` | Builds, tests, publishes, validates, and packages the Windows ZIP |
 | `scripts/build-installer.ps1` | Builds the same payload plus the Inno Setup installer |
-| `scripts/test-installer.ps1` | Installs, launches, relaunches, compares, and uninstalls a temporary test install |
+| `scripts/test-installer.ps1` | Tests installation at the actual per-user path, Start Menu launch, payload parity, relaunch, and uninstall; requires no existing Chudley installation |
 | `.github/workflows/` | CI and release-attachment automation |
 | `THIRD_PARTY_NOTICES.md` | Character, video, meme-lineage, and rights attribution |
 
