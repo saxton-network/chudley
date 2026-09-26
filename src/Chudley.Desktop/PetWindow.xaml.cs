@@ -51,6 +51,7 @@ public partial class PetWindow : Window
         MouseMove += OnPointerMove;
         MouseLeftButtonUp += OnLeftUp;
         LostMouseCapture += OnLostCapture;
+        Closing += (_, _) => SaveCurrentPosition();
         Closed += OnClosed;
     }
 
@@ -297,8 +298,6 @@ public partial class PetWindow : Window
     private void OnClosed(object? sender, EventArgs e)
     {
         _timer.Stop();
-        if (_hwnd != IntPtr.Zero)
-            SaveCurrentPosition();
         _tray.Visible = false;
         _tray.ContextMenuStrip?.Dispose();
         _tray.Dispose();
