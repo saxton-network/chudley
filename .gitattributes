@@ -1,0 +1,2 @@
+# Codex reads this metadata as a packaged asset; preserve its verified bytes on Windows.
+assets/runtime/pet.json -text
