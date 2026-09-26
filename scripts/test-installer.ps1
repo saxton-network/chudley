@@ -1,7 +1,6 @@
 param(
     [string] $ArtifactsDirectory = 'artifacts',
-    [switch] $RequireVisibleWindow,
-    [string] $InstallDirectory = (Join-Path $env:TEMP ('Chudley-installer-test-' + [Guid]::NewGuid().ToString('N')))
+    [switch] $RequireVisibleWindow
 )
 
 $ErrorActionPreference = 'Stop'
@@ -10,8 +9,8 @@ $out = if ([IO.Path]::IsPathRooted($ArtifactsDirectory)) { $ArtifactsDirectory }
 $installer = Join-Path $out 'Chudley-win-x64-installer.exe'
 $portable = Join-Path $out 'Chudley-win-x64-portable.zip'
 $manifestPath = Join-Path $out 'payload-sha256.json'
-$installDir = [IO.Path]::GetFullPath($InstallDirectory)
-$shortcutPath = Join-Path $env:APPDATA 'Microsoft/Windows/Start Menu/Programs/Chudley Test/Chudley.lnk'
+$installDir = Join-Path $env:LOCALAPPDATA 'Programs/Chudley'
+$shortcutPath = Join-Path $env:APPDATA 'Microsoft/Windows/Start Menu/Programs/Chudley.lnk'
 $settingsPath = Join-Path $env:LOCALAPPDATA 'Chudley/settings.json'
 $uninstallRoot = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall'
 
@@ -71,7 +70,7 @@ $installed = $false
 $first = $null
 $second = $null
 try {
-    $setup = Start-Process -FilePath $installer -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/SP-', "/DIR=$installDir", '/GROUP=Chudley Test') -PassThru -Wait -WindowStyle Hidden
+    $setup = Start-Process -FilePath $installer -ArgumentList @('/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART', '/SP-') -PassThru -Wait -WindowStyle Hidden
     if ($setup.ExitCode -ne 0) { throw "Installer exited with $($setup.ExitCode)" }
     $installed = $true
     $registration = @(Get-ItemProperty "$uninstallRoot\*" -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -eq 'Chudley' })
