@@ -12,7 +12,7 @@ public sealed class SystemRandomSource : IRandomSource
     public int Next(int exclusiveMaximum) => _random.Next(exclusiveMaximum);
 }
 
-/// <summary>A small event boundary; no external integration is active in the MVP.</summary>
+/// <summary>A small event boundary; no external integration is active.</summary>
 public interface IPetEventSink
 {
     void Handle(PetEvent petEvent, DateTimeOffset now);
@@ -21,7 +21,7 @@ public interface IPetEventSink
 /// <summary>Time advances only when Tick is called. The UI owns the low-frequency timer.</summary>
 public sealed class PetAnimationEngine : IPetEventSink
 {
-    private static readonly string[] SpecialBehaviors = ["snack", "drink", "wave", "personality"];
+    private static readonly string[] SpecialBehaviors = ["waiting", "jump", "review", "running", "failed"];
     private readonly IRandomSource _random;
     private readonly int _behaviorFrequencyMinutes;
     private AnimationDefinition _animation;
@@ -31,6 +31,7 @@ public sealed class PetAnimationEngine : IPetEventSink
     private DateTimeOffset _pausedAt;
     private PetState _stateBeforePause;
     private bool _dragging;
+    private bool _dragRight = true;
 
     public PetAnimationEngine(DateTimeOffset now, IRandomSource? random = null, int behaviorFrequencyMinutes = 4)
     {
@@ -77,20 +78,27 @@ public sealed class PetAnimationEngine : IPetEventSink
 
     public void Click(DateTimeOffset now)
     {
-        if (!IsPaused && !_dragging) Start("click", now);
+        if (!IsPaused && !_dragging) Start("wave", now);
     }
 
     public void DragStarted(DateTimeOffset now)
     {
         _dragging = true;
-        if (!IsPaused) Start("movement", now);
+        if (!IsPaused) Start(_dragRight ? "running_right" : "running_left", now);
+    }
+
+    public void DragDirection(bool towardRight, DateTimeOffset now)
+    {
+        if (!_dragging || _dragRight == towardRight) return;
+        _dragRight = towardRight;
+        if (!IsPaused) Start(_dragRight ? "running_right" : "running_left", now);
     }
 
     public void DragEnded(DateTimeOffset now)
     {
         if (!_dragging) return;
         _dragging = false;
-        if (!IsPaused) Start("movement", now);
+        if (!IsPaused) Start("waiting", now);
     }
 
     public void Pause(DateTimeOffset now)
@@ -112,14 +120,20 @@ public sealed class PetAnimationEngine : IPetEventSink
         if (_dragging) // A missed mouse-up must not keep an interaction alive forever.
         {
             _dragging = false;
-            Start("movement", now);
+            Start("waiting", now);
         }
     }
 
     public void Handle(PetEvent petEvent, DateTimeOffset now)
     {
-        // Only attention is wired today. The other event values reserve a narrow future input boundary.
-        if (petEvent == PetEvent.AttentionRequested) Click(now);
+        if (IsPaused || _dragging) return;
+        Start(petEvent switch
+        {
+            PetEvent.CodexWorking => "running",
+            PetEvent.CodexCompleted => "jump",
+            PetEvent.CodexError => "failed",
+            _ => "wave"
+        }, now);
     }
 
     private void Start(string name, DateTimeOffset now)

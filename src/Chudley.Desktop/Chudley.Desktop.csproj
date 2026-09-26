@@ -10,7 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Chudley.Core\Chudley.Core.csproj" />
-    <Content Include="..\..\assets\sprites\candidate\manifest.json" Link="assets\sprites\candidate\manifest.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Always" />
-    <Content Include="..\..\assets\sprites\candidate\frames\*.png" Link="assets\sprites\candidate\frames\%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Always" />
+    <Content Include="..\..\assets\runtime\pet.json" Link="assets\runtime\pet.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Always" />
+    <Content Include="..\..\assets\runtime\spritesheet.png" Link="assets\runtime\spritesheet.png" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Always" />
+    <Content Include="..\..\assets\runtime\spritesheet.webp" Link="assets\runtime\spritesheet.webp" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Always" />
   </ItemGroup>
 </Project>

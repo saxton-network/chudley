@@ -1,5 +1,13 @@
-# Production Sprites
+# 🎆 Sprite Staging Area
 
-Approved sprite sheets and extracted animation frames belong here.
+This directory is reserved for reviewed sprite work and future production sprite organization.
 
-Do not treat experimental generations as canonical assets. Promote them here only after the character design, palette, proportions, and frame consistency have been reviewed against the canonical references.
+The **current runtime authority is not this directory**. Chudley v2 ships from:
+
+`assets/runtime/`
+
+The runtime package uses the verified atlas and `pet.json` metadata stored there, and `scripts/validate-assets.ps1` enforces the approved hashes and dimensions during packaging.
+
+Do not treat experimental generations as canonical merely because they exist. New artwork earns promotion only after character identity, palette, proportions, frame consistency, and runtime compatibility have been reviewed.
+
+Democracy is fragile. Sprite provenance is apparently also fragile.

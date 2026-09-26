@@ -8,6 +8,7 @@
 TestResults/
 publish/
 artifacts/
+.tools/
 
 # Python caches and local application state
 __pycache__/
