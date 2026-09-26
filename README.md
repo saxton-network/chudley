@@ -11,7 +11,7 @@
 
 <p align="center">
   <img alt="Windows 11 x64" src="https://img.shields.io/badge/Windows-11%20x64-0078D4?logo=windows11&logoColor=white">
-  <img alt=".NET 8" src="https://img.shields.io/badge/.NET-8-512BD4?logo=dotnet&logoColor=white">
+  <img alt="Codex pet v2" src="https://img.shields.io/badge/Codex-pet%20v2-512BD4">
   <img alt="License: PolyForm Strict 1.0.0" src="https://img.shields.io/badge/license-PolyForm%20Strict%201.0.0-goldenrod">
 </p>
 
@@ -27,79 +27,72 @@ The viral AI clip that kicked this whole thing off was posted by **[@WearForbidd
 
 ## 🦅 What Is Chudley?
 
-Chudley is a local desktop Codex pet for **Windows 11 x64**. He occupies a transparent, always-on-top window, animates from the verified Codex v2 art, reacts to clicks, remembers where you abandoned him, and can be dragged around the desktop like a tiny federally funded nuisance.
+Chudley is a custom pet **inside the Codex desktop app** on Windows 11 x64. The installer places his verified v2 sprite package in Codex's Pets directory. Select him in Codex's pet menu; the installer does not launch a separate desktop application.
 
-Chudley does **not** solve a business problem. Chudley is what happens when a 38-second meme receives a .NET build pipeline and nobody intervenes.
+Chudley does **not** solve a business problem. Chudley is what happens when a 38-second meme receives an 8×11 sprite atlas and nobody intervenes.
 
 ### ⭐ Current capabilities
 
-- 🪟 Transparent, frameless, always-on-top Windows pet
-- 🎨 Crisp nearest-neighbor pixel rendering at 1×, 2×, 3×, or 4×
-- 🖱️ Click reactions and drag-to-reposition behavior
-- 🛴 Verified mirrored directional animation during movement
-- 💤 Idle loops plus waiting, jump, review, running, and failed sequences
-- 💾 Persistent position, scale, and pause state
-- 🖥️ Recovery when a saved position is no longer visible on connected monitors
-- 🚫 No account
-- 📡 No network access
-- 👁️ No telemetry
-- 🛑 No background service
-- 🧍 One Chudley at a time, because the republic has limits
+- 🎨 Verified 8×11 Codex v2 sprite atlas, with idle, working, waiting, review, failed, and directional drag animation
+- 🖱️ Codex's built-in pet interactions and controls
+- 🛴 A mirrored directional animation for the constitutionally protected directional adjustment
+- 📦 Two runtime files: `pet.json` and `spritesheet.webp`
+- 🚫 No separate Chudley process, .NET runtime, service, account, or telemetry
 
-The standalone app does **not yet** receive live Codex task events. The event boundary exists for later integration; no process monitoring or network integration is attached to it today.
+Codex controls the pet's animation and behavior. This package contains no OpenAI API key, authentication, or network client.
 
 ## 🇺🇸 Acquire Chudley
 
 ### 🇺🇸 Recommended: Installer
 
 1. Open the [latest GitHub release](https://github.com/saxton-network/chudley/releases/latest).
-2. Download **`Chudley-win-x64-installer.exe`**.
-3. Run it and complete the wizard. Chudley installs per user under `%LOCALAPPDATA%\Programs\Chudley`, so administrator privileges are not required.
-4. Leave **Launch Chudley** selected or start **Chudley** later from the Start Menu.
+2. Download **`Chudley-Codex-pet-installer.exe`**.
+3. Run the per-user installer. No administrator privileges or development tools are required.
+4. Restart Codex if it was open, then select **Chudley** in the Codex Pets menu.
 
-The installer includes the self-contained application, runtime files, verified sprites, license, and third-party notices. It creates a normal Windows uninstall entry. Uninstalling removes the installed program and shortcut but preserves `%LOCALAPPDATA%\Chudley\settings.json`.
+The installer writes the pet package to `%USERPROFILE%\.codex\pets\chudley-v2` (or `%CODEX_HOME%\pets\chudley-v2` when `CODEX_HOME` is set). License, notices, and uninstall metadata live separately under `%LOCALAPPDATA%\Programs\Chudley Codex Pet`. Windows Settings lists **Chudley for Codex** for uninstall. The installer contains no standalone `Chudley.Desktop.exe`.
 
-### 🗽 Portable edition
+### 🗽 Manual import ZIP
 
-1. Download **`Chudley-win-x64-portable.zip`** from the same release.
-2. Extract the entire ZIP to a folder you control.
-3. Run **`Chudley.Desktop.exe`**.
+1. Download **`Chudley-Codex-pet.zip`** from the same release.
+2. Extract its `chudley-v2` folder under `%USERPROFILE%\.codex\pets` (or `%CODEX_HOME%\pets`).
+3. Restart Codex if needed, then select **Chudley** in its Pets menu.
 
-Both distributions use the same validated Windows x64 application payload. No separate .NET runtime, SDK, Python installation, Git client, Visual Studio installation, or administrator access is required. Until the first release asset is published, review builds are available from the [Windows CI workflow](https://github.com/saxton-network/chudley/actions/workflows/ci.yml); GitHub may require sign-in to download Actions artifacts.
+Both formats contain the same verified pet metadata and artwork. The ZIP also includes the license and third-party notices. Neither requires the .NET runtime, SDK, Python, Git, or Visual Studio.
 
 ### 🧹 Removal
 
-Quit Chudley from the tray/right-click menu, then delete the extracted folder.
+For the installer, uninstall **Chudley for Codex** from Windows Settings. For the manual ZIP, remove only the `chudley-v2` folder you extracted. Restart Codex to refresh its pet menu.
 
-Optional saved settings live at:
-
-`%LOCALAPPDATA%\Chudley\settings.json`
-
-Delete that file if you also want the government to forget his position, scale, and pause state.
+Other Codex pets and Codex settings are outside Chudley's installer scope.
 
 ## 🎮 Rules of Engagement
 
 | Action | Result |
 | --- | --- |
-| Left click | Wave reaction |
-| Left drag | Move Chudley without triggering a click reaction |
-| Right click or tray icon | Open controls |
-| Pause / Resume | Stop or continue animation |
-| Scale | Select crisp 1×, 2×, 3×, or 4× rendering |
-| Reset Position | Return Chudley to a visible default location |
-| Quit | Peaceful transfer of power back to Windows |
+| Select Chudley in Codex's Pets menu | Use him as the active Codex desktop pet |
+| Click or drag | Use Codex's built-in pet interaction |
+| Change or remove the pet | Use the Codex Pets menu |
 
-While being dragged, Chudley's mirrored movement animation follows the drag direction. Chudley does not turn left. He may, under exceptional constitutional authority, perform a **constitutionally protected directional adjustment**.
+While being dragged, Chudley may perform a **constitutionally protected directional adjustment**.
 
 ## 🛠️ Department of Chudley Engineering
 
-For development, use **Windows 11 x64** with the **.NET 8 SDK** installed.
+Packaging the Codex pet requires Windows 11 x64 and Inno Setup 6. The .NET 8 SDK is needed only if you also work on the retained standalone WPF source.
 
 Clone the repository, then run from the repository root:
 
 ```powershell
-dotnet restore src/Chudley.Desktop/Chudley.Desktop.csproj
 ./scripts/validate-assets.ps1
+./scripts/build-installer.ps1
+```
+
+The resulting `artifacts/Chudley-Codex-pet-installer.exe` and `artifacts/Chudley-Codex-pet.zip` contain the same approved Codex pet. The build script finds `ISCC.exe` in a normal Inno Setup 6 installation or accepts `-InnoCompiler`.
+
+The standalone WPF source remains in `src/` for development but is **not** included in either Codex pet distribution. To build and test that source separately:
+
+```powershell
+dotnet restore src/Chudley.Desktop/Chudley.Desktop.csproj
 dotnet build src/Chudley.Desktop/Chudley.Desktop.csproj --configuration Release --warnaserror
 dotnet run --project tests/Chudley.Core.Tests/Chudley.Core.Tests.csproj --configuration Release
 dotnet run --project src/Chudley.Desktop/Chudley.Desktop.csproj --configuration Release
@@ -107,33 +100,28 @@ dotnet run --project src/Chudley.Desktop/Chudley.Desktop.csproj --configuration 
 
 ### 📦 Manufacture domestic Chudley
 
-Produce the complete end-user package with one command:
+Produce the Codex pet installer and manual ZIP with one command:
 
 ```powershell
-./scripts/publish-windows.ps1
+./scripts/build-installer.ps1
 ```
 
 That script:
 
 1. validates the approved runtime artwork;
-2. restores dependencies;
-3. builds with warnings treated as errors;
-4. runs the core test program;
-5. publishes a self-contained `win-x64` application;
-6. verifies required runtime files and assets;
-7. re-validates the published artwork;
-8. creates `artifacts/Chudley-win-x64-portable.zip`;
-9. when run through `./scripts/build-installer.ps1`, compiles `artifacts/Chudley-win-x64-installer.exe` from that same publish directory.
+2. stages only `pet.json`, `spritesheet.webp`, the license, and notices;
+3. verifies the staged pet files match the approved source hashes;
+4. creates a manual-import ZIP and an Inno Setup installer from that payload.
 
 Generated release output is intentionally **not committed** to source control.
 
-A human should still smoke-test the ZIP from a fresh Windows 11 x64 user profile before publishing a release, because CI is powerful but has not yet achieved citizenship.
+`./scripts/test-installer.ps1` runs the installer lifecycle against a clean Codex pet path. It refuses to overwrite an existing Chudley pet during testing. To test locally without touching an installed pet, set `CODEX_HOME` to an isolated temporary directory for that process. The ordinary installer uses the user's actual Codex home.
 
 ## 🧪 Federal Quality Assurance
 
-GitHub Actions runs the same packaging path for pushes to the release-development branches and for pull requests.
+GitHub Actions validates the Codex artwork, builds the retained .NET source, runs core tests, packages the Codex pet, and tests install/uninstall on a clean Windows runner.
 
-A separate release workflow listens for a **published GitHub Release whose tag starts with `v`**, rebuilds both artifacts from that tag, and attaches `Chudley-win-x64-installer.exe` and `Chudley-win-x64-portable.zip` to the existing release. Inno Setup 6 is the installer technology: its stable script format gives Chudley a per-user install, Start Menu shortcut, and standard uninstall entry without adding a runtime framework. `./scripts/build-installer.ps1` finds the compiler in `.tools/inno/ISCC.exe` or a normal Inno Setup 6 installation.
+A separate release workflow listens for a **published GitHub Release whose tag starts with `v`**, rebuilds and tests from that tag, then attaches `Chudley-Codex-pet-installer.exe` and `Chudley-Codex-pet.zip` to the release. Inno Setup 6 provides the per-user uninstall entry without adding a runtime framework.
 
 The workflow does **not** create or publish a release on its own.
 
@@ -141,19 +129,17 @@ The workflow does **not** create or publish a release on its own.
 
 | Path | Constitutional responsibility |
 | --- | --- |
-| `src/Chudley.Core/` | Deterministic animation engine, settings, positioning, animation catalog |
-| `src/Chudley.Desktop/` | WPF window, tray shell, sprite loading, desktop behavior |
-| `assets/runtime/` | Verified v2 runtime atlas and `pet.json` metadata |
+| `assets/runtime/` | Verified Codex v2 `pet.json` and spritesheet; PNG retained for source/provenance |
 | `assets/reference/` | Character/reference material; see third-party notices |
 | `assets/readme/` | Public-facing README artwork |
 | `scripts/validate-assets.ps1` | Verifies approved artwork hashes, dimensions, and metadata |
-| `scripts/publish-windows.ps1` | Builds, tests, publishes, validates, and packages the Windows ZIP |
-| `scripts/build-installer.ps1` | Builds the same payload plus the Inno Setup installer |
-| `scripts/test-installer.ps1` | Tests installation at the actual per-user path, Start Menu launch, payload parity, relaunch, and uninstall; requires no existing Chudley installation |
+| `scripts/build-installer.ps1` | Packages the validated Codex pet as an installer and manual ZIP |
+| `scripts/test-installer.ps1` | Tests the Codex pet path, package parity, metadata, and uninstall |
+| `src/` and `tests/` | Retained standalone WPF source and its separate tests; not distributed as the Codex pet |
 | `.github/workflows/` | CI and release-attachment automation |
 | `THIRD_PARTY_NOTICES.md` | Character, video, meme-lineage, and rights attribution |
 
-The verified v2 runtime atlas uses **8×11 cells at 192×208 pixels each**. `assets/runtime/spritesheet.png` is the pixel-identical PNG used by WPF; `spritesheet.webp` and `pet.json` are retained alongside it. Packaging fails if the approved hashes or required dimensions no longer match.
+The verified v2 runtime atlas uses **8×11 cells at 192×208 pixels each**. The Codex pet uses `spritesheet.webp` and `pet.json`; `spritesheet.png` remains as the pixel-identical source for the retained WPF renderer. Packaging fails if approved hashes or required dimensions no longer match.
 
 ## 📜 License: Freedom, With Extremely Specific Terms
 

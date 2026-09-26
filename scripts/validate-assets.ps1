@@ -10,10 +10,13 @@ foreach ($file in @($png, $webp, $metadata)) {
     if (!(Test-Path -LiteralPath $file -PathType Leaf)) { throw "Required asset missing: $file" }
 }
 $pet = Get-Content -LiteralPath $metadata -Raw | ConvertFrom-Json
-if ($pet.id -ne 'chudley-v2' -or $pet.spriteVersionNumber -ne 2 -or $pet.spritesheetPath -ne 'spritesheet.webp') {
+if ($pet.id -ne 'chudley-v2' -or $pet.displayName -ne 'Chudley' -or
+    $pet.description -ne 'Make Codex Great Again' -or
+    $pet.spriteVersionNumber -ne 2 -or $pet.spritesheetPath -ne 'spritesheet.webp') {
     throw 'Invalid Codex pet metadata'
 }
 $expected = @{
+    'pet.json' = '1BEC852A6B4918D8132392478636C1067F75A98835AF4F83AE14BF835A33B451'
     'spritesheet.png' = 'EFF5A9E1CC19A844E22D540D77417D60566B88F4888A1F90ADDE690D906CC5A2'
     'spritesheet.webp' = 'BDDBE9D941A6E98174C5EA74CB694E4CFEA6654593C194ED310285822D884C5E'
 }

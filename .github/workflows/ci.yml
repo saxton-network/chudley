@@ -2,7 +2,7 @@ name: 🇺🇸 Build, Test & Package Chudley
 
 on:
   push:
-    branches: [main, feat/chudley-windows-installer]
+    branches: [main, feat/codex-pet-installer]
   pull_request:
 
 jobs:
@@ -13,20 +13,29 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
+      - name: 🧪 Keep the standalone source buildable
+        shell: pwsh
+        run: |
+          dotnet restore src/Chudley.Desktop/Chudley.Desktop.csproj
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          dotnet build src/Chudley.Desktop/Chudley.Desktop.csproj --configuration Release --no-restore --warnaserror
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          dotnet run --project tests/Chudley.Core.Tests/Chudley.Core.Tests.csproj --configuration Release
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: 🏭 Install the Inno Setup compiler
         shell: pwsh
         run: winget install --id JRSoftware.InnoSetup -e --silent --accept-package-agreements --accept-source-agreements
-      - name: 🧪 Build, test, validate assets, and package
+      - name: 🧪 Validate and package the Codex pet
         shell: pwsh
         run: ./scripts/build-installer.ps1
-      - name: 🧪 Install, launch, relaunch, and uninstall the packaged pet
+      - name: 🧪 Install and uninstall from Codex's Pets directory
         shell: pwsh
         run: ./scripts/test-installer.ps1
-      - name: 📦 Upload portable freedom package
+      - name: 📦 Upload Codex pet packages
         uses: actions/upload-artifact@v4
         with:
-          name: Chudley-win-x64-packages
+          name: Chudley-Codex-pet-packages
           path: |
-            artifacts/Chudley-win-x64-portable.zip
-            artifacts/Chudley-win-x64-installer.exe
+            artifacts/Chudley-Codex-pet.zip
+            artifacts/Chudley-Codex-pet-installer.exe
           if-no-files-found: error

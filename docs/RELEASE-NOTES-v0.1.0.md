@@ -1,5 +1,7 @@
 # 🇺🇸 Chudley has entered the homes of ordinary Americans
 
+> **Superseded by v0.2.0:** This historical release installs a separate Windows app. It does not install Chudley into the Codex desktop app. Download the Codex pet installer from the latest release instead.
+
 Chudley no longer requires citizens to understand ZIP extraction as a prerequisite for liberty.
 
 This first installable release introduces a conventional per-user Windows installer while retaining the portable edition for constitutional traditionalists.

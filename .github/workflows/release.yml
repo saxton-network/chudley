@@ -1,4 +1,4 @@
-name: 🦅 Attach Chudley Freedom Package to Release
+name: 🦅 Attach the Codex Pet to Release
 
 on:
   release:
@@ -21,15 +21,15 @@ jobs:
       - name: 🏭 Install the Inno Setup compiler
         shell: pwsh
         run: winget install --id JRSoftware.InnoSetup -e --silent --accept-package-agreements --accept-source-agreements
-      - name: 📦 Build and validate release packages
+      - name: 📦 Build and validate Codex pet packages
         shell: pwsh
         run: ./scripts/build-installer.ps1
-      - name: 🧪 Prove installation, launch, parity, and uninstall before attachment
+      - name: 🧪 Prove Codex pet installation and uninstall before attachment
         shell: pwsh
         run: ./scripts/test-installer.ps1
-      - name: 🎆 Attach installer and portable packages to existing release
+      - name: 🎆 Attach installer and manual-import ZIP to existing release
         shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_TAG: ${{ github.event.release.tag_name }}
-        run: gh release upload $env:RELEASE_TAG artifacts/Chudley-win-x64-installer.exe artifacts/Chudley-win-x64-portable.zip
+        run: gh release upload $env:RELEASE_TAG artifacts/Chudley-Codex-pet-installer.exe artifacts/Chudley-Codex-pet.zip
