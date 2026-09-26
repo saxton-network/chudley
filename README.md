@@ -4,7 +4,10 @@
   <img src="assets/readme/chudley-banner.svg" alt="Chudley banner" width="100%">
 </p>
 
-<p align="center"><strong>Freedom. Fireworks. Codex. Chudley.</strong></p>
+<p align="center"><strong>🇺🇸 Freedom. 🇺🇸</strong></p>
+<p align="center"><strong>🎆 Fireworks. 🎆</strong></p>
+<p align="center"><strong>🤖 Codex. 🤖</strong></p>
+<p align="center"><strong>🦅 Chudley. 🦅</strong></p>
 
 **Status:** Windows MVP candidate. Chudley is a local desktop pet for Windows 11 x64. It displays the supplied pixel art in a transparent, always-on-top window. It idles, reacts to clicks, and occasionally plays snack, drink, wave, movement, and personality keyframe sequences. Drag him to a new position. The application makes no API calls and has no telemetry or background service.
 
