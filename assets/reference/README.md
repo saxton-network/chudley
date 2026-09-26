@@ -1,7 +1,15 @@
-# Character References
+# 🦅 Character Reference Authority
 
-Canonical character reference material belongs here.
+This directory holds visual reference material used to keep Chudley's identity consistent while the software around him becomes increasingly over-engineered.
 
-The large approved character image is the authority for character identity. The future master sprite sheet will complement it as the authority for pixel-art treatment and animation construction.
+`original-character.png` is the current visual reference for character identity. It is **reference material**, not the runtime sprite source of truth.
 
-README artwork in `assets/readme/` is presentation material and should not replace the highest-resolution canonical reference.
+The current runtime artwork lives in:
+
+`assets/runtime/`
+
+That directory contains the verified Codex v2 atlas and metadata actually shipped with the desktop pet.
+
+Reference material may depict or derive from third-party meme imagery. Its presence here does not mean the Chudley project claims exclusive ownership of the underlying character or grants rights it does not possess. See [THIRD_PARTY_NOTICES.md](../../THIRD_PARTY_NOTICES.md) before interpreting repository-wide licensing as applying to third-party source material.
+
+README artwork in `assets/readme/` is presentation material and should not replace the highest-quality character reference merely because it has more fireworks.

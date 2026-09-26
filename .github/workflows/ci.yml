@@ -1,4 +1,4 @@
-name: Windows build and portable package
+name: 🇺🇸 Build, Test & Package Chudley
 
 on:
   push:
@@ -13,10 +13,10 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - name: Build, test, validate assets, and package
+      - name: 🧪 Build, test, validate assets, and package
         shell: pwsh
         run: ./scripts/publish-windows.ps1
-      - name: Upload portable package
+      - name: 📦 Upload portable freedom package
         uses: actions/upload-artifact@v4
         with:
           name: Chudley-win-x64-portable

@@ -1,4 +1,4 @@
-name: Attach Windows package to release
+name: 🦅 Attach Chudley Freedom Package to Release
 
 on:
   release:
@@ -18,10 +18,10 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - name: Build and validate portable package
+      - name: 📦 Build and validate release package
         shell: pwsh
         run: ./scripts/publish-windows.ps1
-      - name: Attach to existing release
+      - name: 🎆 Attach portable package to existing release
         shell: pwsh
         env:
           GH_TOKEN: ${{ github.token }}
