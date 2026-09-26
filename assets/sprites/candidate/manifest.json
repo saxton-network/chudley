@@ -1,0 +1,298 @@
+{
+  "format": "RGBA PNG",
+  "columns": 4,
+  "rows": 6,
+  "frame_width": 128,
+  "frame_height": 128,
+  "sequence_order": "row-major",
+  "frames": [
+    {
+      "row": 0,
+      "column": 0,
+      "name": "front",
+      "rect": [
+        0,
+        0,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 0,
+      "column": 1,
+      "name": "three_quarter_right",
+      "rect": [
+        128,
+        0,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 0,
+      "column": 2,
+      "name": "three_quarter_left",
+      "rect": [
+        256,
+        0,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 0,
+      "column": 3,
+      "name": "side_right",
+      "rect": [
+        384,
+        0,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 1,
+      "column": 0,
+      "name": "reach_pocket",
+      "rect": [
+        0,
+        128,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 1,
+      "column": 1,
+      "name": "grab_cheesy_puffs",
+      "rect": [
+        128,
+        128,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 1,
+      "column": 2,
+      "name": "lift_cheesy_puffs",
+      "rect": [
+        256,
+        128,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 1,
+      "column": 3,
+      "name": "eat_cheesy_puffs",
+      "rect": [
+        384,
+        128,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 2,
+      "column": 0,
+      "name": "hold_red_can",
+      "rect": [
+        0,
+        256,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 2,
+      "column": 1,
+      "name": "open_red_can_half_blink",
+      "rect": [
+        128,
+        256,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 2,
+      "column": 2,
+      "name": "sip_red_can_closed_eyes",
+      "rect": [
+        256,
+        256,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 2,
+      "column": 3,
+      "name": "lower_red_can_reopen",
+      "rect": [
+        384,
+        256,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 3,
+      "column": 0,
+      "name": "rest",
+      "rect": [
+        0,
+        384,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 3,
+      "column": 1,
+      "name": "move",
+      "rect": [
+        128,
+        384,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 3,
+      "column": 2,
+      "name": "startle_move",
+      "rect": [
+        256,
+        384,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 3,
+      "column": 3,
+      "name": "settle",
+      "rect": [
+        384,
+        384,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 4,
+      "column": 0,
+      "name": "attention",
+      "rect": [
+        0,
+        512,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 4,
+      "column": 1,
+      "name": "click",
+      "rect": [
+        128,
+        512,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 4,
+      "column": 2,
+      "name": "shocked",
+      "rect": [
+        256,
+        512,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 4,
+      "column": 3,
+      "name": "wave",
+      "rect": [
+        384,
+        512,
+        128,
+        128
+      ],
+      "source": "approved_master"
+    },
+    {
+      "row": 5,
+      "column": 0,
+      "name": "point",
+      "rect": [
+        0,
+        640,
+        128,
+        128
+      ],
+      "source": "repaired_bottom_strip"
+    },
+    {
+      "row": 5,
+      "column": 1,
+      "name": "smug_blue_lips",
+      "rect": [
+        128,
+        640,
+        128,
+        128
+      ],
+      "source": "repaired_bottom_strip"
+    },
+    {
+      "row": 5,
+      "column": 2,
+      "name": "amused_blue_lips",
+      "rect": [
+        256,
+        640,
+        128,
+        128
+      ],
+      "source": "repaired_bottom_strip"
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "name": "signature_blue_lips",
+      "rect": [
+        384,
+        640,
+        128,
+        128
+      ],
+      "source": "repaired_bottom_strip"
+    }
+  ]
+}
