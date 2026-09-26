@@ -176,8 +176,12 @@ def validate() -> None:
             "missing original character reference")
     require((ROOT / "tools" / "build_sprite_atlas.py").is_file(),
             "missing original atlas builder")
-    require(len(list((ROOT / "assets" / "source" / "generated").glob("*.png"))) == 2,
-            "expected two generated source images")
+    source_files = {p.name for p in (ROOT / "assets" / "source" / "generated").glob("*.png")}
+    require(source_files == {
+        "exec-408ab73a-5fc8-4c1a-93da-ab850406e697.png",
+        "exec-4947ea28-beb5-41a7-baad-fcd31f5c7cf1.png",
+    }, "generated source image set mismatch")
+    require((CANDIDATE / "README.md").is_file(), "missing original candidate README")
 
 
 if __name__ == "__main__":
