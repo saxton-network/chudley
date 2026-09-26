@@ -10,8 +10,11 @@ public readonly record struct ScreenBounds(double Left, double Top, double Width
 public static class Positioning
 {
     public static PointD Resolve(PetSettings settings, int petPixelSize, IReadOnlyList<ScreenBounds> screens)
+        => Resolve(settings, petPixelSize, petPixelSize, screens);
+
+    public static PointD Resolve(PetSettings settings, int petWidth, int petHeight, IReadOnlyList<ScreenBounds> screens)
     {
-        if (petPixelSize <= 0) throw new ArgumentOutOfRangeException(nameof(petPixelSize));
+        if (petWidth <= 0 || petHeight <= 0) throw new ArgumentOutOfRangeException(nameof(petWidth));
         if (screens.Count == 0) throw new ArgumentException("At least one screen is required.", nameof(screens));
         var validScreens = screens.Where(s => s.Width > 0 && s.Height > 0).ToArray();
         if (validScreens.Length == 0) throw new ArgumentException("No screen has positive dimensions.", nameof(screens));
@@ -20,26 +23,26 @@ public static class Positioning
         if (saved.Left is not null && saved.Top is not null)
         {
             var matching = validScreens
-                .Select(screen => (screen, area: IntersectionArea(saved.Left.Value, saved.Top.Value, petPixelSize, screen)))
+                .Select(screen => (screen, area: IntersectionArea(saved.Left.Value, saved.Top.Value, petWidth, petHeight, screen)))
                 .OrderByDescending(match => match.area).First();
             if (matching.area > 0) target = matching.screen;
         }
         else
         {
-            return DefaultPoint(target, petPixelSize);
+            return DefaultPoint(target, petWidth, petHeight);
         }
-        if (IntersectionArea(saved.Left!.Value, saved.Top!.Value, petPixelSize, target) == 0)
-            return DefaultPoint(target, petPixelSize);
+        if (IntersectionArea(saved.Left!.Value, saved.Top!.Value, petWidth, petHeight, target) == 0)
+            return DefaultPoint(target, petWidth, petHeight);
         return new PointD(
-            Math.Clamp(saved.Left.Value, target.Left, Math.Max(target.Left, target.Right - petPixelSize)),
-            Math.Clamp(saved.Top.Value, target.Top, Math.Max(target.Top, target.Bottom - petPixelSize)));
+            Math.Clamp(saved.Left.Value, target.Left, Math.Max(target.Left, target.Right - petWidth)),
+            Math.Clamp(saved.Top.Value, target.Top, Math.Max(target.Top, target.Bottom - petHeight)));
     }
 
-    private static double IntersectionArea(double x, double y, int size, ScreenBounds screen) =>
-        Math.Max(0, Math.Min(x + size, screen.Right) - Math.Max(x, screen.Left)) *
-        Math.Max(0, Math.Min(y + size, screen.Bottom) - Math.Max(y, screen.Top));
+    private static double IntersectionArea(double x, double y, int width, int height, ScreenBounds screen) =>
+        Math.Max(0, Math.Min(x + width, screen.Right) - Math.Max(x, screen.Left)) *
+        Math.Max(0, Math.Min(y + height, screen.Bottom) - Math.Max(y, screen.Top));
 
-    private static PointD DefaultPoint(ScreenBounds screen, int size) => new(
-        Math.Max(screen.Left, screen.Right - size - 24),
-        Math.Max(screen.Top, screen.Bottom - size - 24));
+    private static PointD DefaultPoint(ScreenBounds screen, int width, int height) => new(
+        Math.Max(screen.Left, screen.Right - width - 24),
+        Math.Max(screen.Top, screen.Bottom - height - 24));
 }

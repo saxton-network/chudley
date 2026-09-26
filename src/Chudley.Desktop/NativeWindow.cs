@@ -48,9 +48,9 @@ internal static class NativeWindow
         return point;
     }
 
-    internal static void Place(IntPtr hwnd, int x, int y, int size)
+    internal static void Place(IntPtr hwnd, int x, int y, int width, int height)
     {
-        if (!SetWindowPos(hwnd, IntPtr.Zero, x, y, size, size, SwpNoZOrder | SwpNoActivate))
+        if (!SetWindowPos(hwnd, IntPtr.Zero, x, y, width, height, SwpNoZOrder | SwpNoActivate))
             throw new InvalidOperationException("Could not place the Chudley window.");
     }
 

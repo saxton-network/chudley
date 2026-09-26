@@ -1,72 +1,50 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text.Json;
-using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Media.Imaging;
+using Chudley.Core;
 
 namespace Chudley.Desktop;
 
-// The manifest owns the logical-name to production-file mapping. The UI never
-// embeds a frame filename, so an updated candidate can replace these PNGs.
 internal sealed class SpriteCatalog
 {
-    private static readonly Regex SafeName = new("^[a-z0-9_]+$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
-    private readonly Dictionary<string, BitmapSource> _frames;
+    private readonly Dictionary<string, BitmapSource> _frames = new(StringComparer.Ordinal);
 
     public SpriteCatalog(string assetsDirectory, IEnumerable<string> requiredNames)
     {
-        string manifestPath = Path.Combine(assetsDirectory, "manifest.json");
-        if (!File.Exists(manifestPath))
-            throw new FileNotFoundException("Required sprite manifest is missing", manifestPath);
+        string metadataPath = Path.Combine(assetsDirectory, "pet.json");
+        string pngPath = Path.Combine(assetsDirectory, "spritesheet.png");
+        string webpPath = Path.Combine(assetsDirectory, "spritesheet.webp");
+        foreach (string path in new[] { metadataPath, pngPath, webpPath })
+            if (!File.Exists(path)) throw new FileNotFoundException("Required Chudley asset is missing.", path);
 
-        using JsonDocument manifest = JsonDocument.Parse(File.ReadAllText(manifestPath));
-        JsonElement root = manifest.RootElement;
-        if (root.GetProperty("columns").GetInt32() != 4 ||
-            root.GetProperty("rows").GetInt32() != 6 ||
-            root.GetProperty("frame_width").GetInt32() != 128 ||
-            root.GetProperty("frame_height").GetInt32() != 128)
-            throw new InvalidDataException("Sprite manifest dimensions do not match the 4x6, 128px candidate.");
+        using JsonDocument metadata = JsonDocument.Parse(File.ReadAllText(metadataPath));
+        if (metadata.RootElement.GetProperty("spriteVersionNumber").GetInt32() != 2 ||
+            metadata.RootElement.GetProperty("spritesheetPath").GetString() != "spritesheet.webp")
+            throw new InvalidDataException("Unsupported Chudley pet metadata.");
 
-        JsonElement entries = root.GetProperty("frames");
-        if (entries.GetArrayLength() != 24)
-            throw new InvalidDataException("Sprite manifest must contain exactly 24 frames.");
+        var atlas = new BitmapImage();
+        atlas.BeginInit();
+        atlas.UriSource = new Uri(pngPath, UriKind.Absolute);
+        atlas.CacheOption = BitmapCacheOption.OnLoad;
+        atlas.EndInit();
+        atlas.Freeze();
+        if (atlas.PixelWidth != AnimationCatalog.Columns * AnimationCatalog.FrameWidth ||
+            atlas.PixelHeight != AnimationCatalog.Rows * AnimationCatalog.FrameHeight)
+            throw new InvalidDataException("Chudley spritesheet dimensions are invalid.");
 
-        string framesDirectory = Path.Combine(assetsDirectory, "frames");
-        _frames = new Dictionary<string, BitmapSource>(StringComparer.Ordinal);
-        foreach (JsonElement entry in entries.EnumerateArray())
+        foreach (var (name, cell) in AnimationCatalog.Frames)
         {
-            string name = entry.GetProperty("name").GetString() ?? "";
-            int row = entry.GetProperty("row").GetInt32();
-            int column = entry.GetProperty("column").GetInt32();
-            if (!SafeName.IsMatch(name) || row is < 0 or > 5 || column is < 0 or > 3)
-                throw new InvalidDataException($"Invalid sprite manifest entry: {name}");
-            if (_frames.ContainsKey(name))
-                throw new InvalidDataException($"Duplicate sprite name in manifest: {name}");
-
-            string fileName = $"r{row + 1:00}-c{column + 1:00}-{name}.png";
-            string path = Path.Combine(framesDirectory, fileName);
-            if (!File.Exists(path))
-                throw new FileNotFoundException($"Required Chudley frame '{name}' is missing", path);
-
-            var bitmap = new BitmapImage();
-            bitmap.BeginInit();
-            bitmap.UriSource = new Uri(path, UriKind.Absolute);
-            bitmap.CacheOption = BitmapCacheOption.OnLoad;
-            bitmap.EndInit();
-            bitmap.Freeze();
-            if (bitmap.PixelWidth != 128 || bitmap.PixelHeight != 128)
-                throw new InvalidDataException($"Frame '{name}' must be 128x128 pixels: {path}");
-            _frames.Add(name, bitmap);
+            var frame = new CroppedBitmap(atlas, new Int32Rect(
+                cell.Column * AnimationCatalog.FrameWidth, cell.Row * AnimationCatalog.FrameHeight,
+                AnimationCatalog.FrameWidth, AnimationCatalog.FrameHeight));
+            frame.Freeze();
+            _frames.Add(name, frame);
         }
-
-        string[] missing = requiredNames.Where(name => !_frames.ContainsKey(name)).ToArray();
-        if (missing.Length > 0)
-            throw new InvalidDataException($"Animation references missing sprite frame(s): {string.Join(", ", missing)}");
+        foreach (string name in requiredNames)
+            if (!_frames.ContainsKey(name)) throw new InvalidDataException($"Animation references unknown frame: {name}");
     }
 
-    public BitmapSource Get(string name) => _frames.TryGetValue(name, out BitmapSource? image)
-        ? image
-        : throw new InvalidDataException($"Unknown Chudley sprite frame: {name}");
+    public BitmapSource Get(string name) => _frames.TryGetValue(name, out BitmapSource? frame)
+        ? frame : throw new InvalidDataException($"Unknown Chudley frame: {name}");
 }

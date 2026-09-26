@@ -14,7 +14,8 @@ namespace Chudley.Desktop;
 
 public partial class PetWindow : Window
 {
-    private const int FramePixels = 128;
+    private const int FrameWidth = AnimationCatalog.FrameWidth;
+    private const int FrameHeight = AnimationCatalog.FrameHeight;
     private const int DragThresholdPixels = 4;
 
     private readonly PetSettingsStore _store;
@@ -35,7 +36,7 @@ public partial class PetWindow : Window
         InitializeComponent();
         _store = store;
         _settings = settings;
-        _sprites = new SpriteCatalog(Path.Combine(AppContext.BaseDirectory, "assets", "sprites", "candidate"), AnimationCatalog.AllFrameNames);
+        _sprites = new SpriteCatalog(Path.Combine(AppContext.BaseDirectory, "assets", "runtime"), AnimationCatalog.AllFrameNames);
         DateTimeOffset now = DateTimeOffset.UtcNow;
         _engine = new PetAnimationEngine(now, behaviorFrequencyMinutes: settings.BehaviorFrequencyMinutes);
         if (settings.Paused)
@@ -119,7 +120,8 @@ public partial class PetWindow : Window
             RenderFrame();
             ScheduleNext();
         }
-        NativeWindow.Place(_hwnd, _pressWindow.Left + dx, _pressWindow.Top + dy, FramePixels * _settings.Scale);
+        if (dx != 0) _engine.DragDirection(dx > 0, DateTimeOffset.UtcNow);
+        NativeWindow.Place(_hwnd, _pressWindow.Left + dx, _pressWindow.Top + dy, FrameWidth * _settings.Scale, FrameHeight * _settings.Scale);
         e.Handled = true;
     }
 
@@ -163,17 +165,18 @@ public partial class PetWindow : Window
 
     private void ApplyScaleAndPosition(bool reset)
     {
-        int size = FramePixels * _settings.Scale;
+        int width = FrameWidth * _settings.Scale;
+        int height = FrameHeight * _settings.Scale;
         DpiScale dpi = VisualTreeHelper.GetDpi(this);
-        Width = size / dpi.DpiScaleX;
-        Height = size / dpi.DpiScaleY;
+        Width = width / dpi.DpiScaleX;
+        Height = height / dpi.DpiScaleY;
         Sprite.Width = Width;
         Sprite.Height = Height;
 
         if (reset)
             _settings = _settings with { Left = null, Top = null };
-        PointD point = Positioning.Resolve(_settings, size, CurrentScreens());
-        NativeWindow.Place(_hwnd, (int)Math.Round(point.X), (int)Math.Round(point.Y), size);
+        PointD point = Positioning.Resolve(_settings, width, height, CurrentScreens());
+        NativeWindow.Place(_hwnd, (int)Math.Round(point.X), (int)Math.Round(point.Y), width, height);
         SaveCurrentPosition();
     }
 
@@ -210,13 +213,14 @@ public partial class PetWindow : Window
         if (_hwnd == IntPtr.Zero)
             return;
         NativeWindow.Rect rect = NativeWindow.GetRect(_hwnd);
-        int size = FramePixels * _settings.Scale;
+        int width = FrameWidth * _settings.Scale;
+        int height = FrameHeight * _settings.Scale;
         PetSettings requested = _settings with { Left = rect.Left, Top = rect.Top };
-        PointD valid = Positioning.Resolve(requested, size, CurrentScreens());
+        PointD valid = Positioning.Resolve(requested, width, height, CurrentScreens());
         int x = (int)Math.Round(valid.X);
         int y = (int)Math.Round(valid.Y);
         if (x != rect.Left || y != rect.Top)
-            NativeWindow.Place(_hwnd, x, y, size);
+            NativeWindow.Place(_hwnd, x, y, width, height);
         _settings = requested with { Left = x, Top = y };
         _store.Save(_settings);
     }
