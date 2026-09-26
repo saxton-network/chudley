@@ -50,19 +50,22 @@ The standalone app does **not yet** receive live Codex task events. The event bo
 
 ## 🇺🇸 Acquire Chudley
 
-### 🗽 Normal-human installation
-
-The normal distribution is a **portable, self-contained Windows x64 ZIP**.
+### 🇺🇸 Recommended: Installer
 
 1. Open the [latest GitHub release](https://github.com/saxton-network/chudley/releases/latest).
-2. Download **`Chudley-win-x64-portable.zip`**.
-3. Extract the **entire** ZIP to a folder you control.
-4. Run **`Chudley.Desktop.exe`**.
-5. Observe the peaceful transfer of desktop power.
+2. Download **`Chudley-win-x64-installer.exe`**.
+3. Run it and complete the wizard. Chudley installs per user under `%LOCALAPPDATA%\Programs\Chudley`, so administrator privileges are not required.
+4. Leave **Launch Chudley** selected or start **Chudley** later from the Start Menu.
 
-No separate .NET runtime, SDK, Python installation, Git client, Visual Studio installation, or administrator access is required.
+The installer includes the self-contained application, runtime files, verified sprites, license, and third-party notices. It creates a normal Windows uninstall entry. Uninstalling removes the installed program and shortcut but preserves `%LOCALAPPDATA%\Chudley\settings.json`.
 
-There is **no installer yet**. Until the first release asset is published, review builds are available from the [Windows CI workflow](https://github.com/saxton-network/chudley/actions/workflows/ci.yml); GitHub may require sign-in to download Actions artifacts.
+### 🗽 Portable edition
+
+1. Download **`Chudley-win-x64-portable.zip`** from the same release.
+2. Extract the entire ZIP to a folder you control.
+3. Run **`Chudley.Desktop.exe`**.
+
+Both distributions use the same validated Windows x64 application payload. No separate .NET runtime, SDK, Python installation, Git client, Visual Studio installation, or administrator access is required. Until the first release asset is published, review builds are available from the [Windows CI workflow](https://github.com/saxton-network/chudley/actions/workflows/ci.yml); GitHub may require sign-in to download Actions artifacts.
 
 ### 🧹 Removal
 
@@ -119,7 +122,8 @@ That script:
 5. publishes a self-contained `win-x64` application;
 6. verifies required runtime files and assets;
 7. re-validates the published artwork;
-8. creates `artifacts/Chudley-win-x64-portable.zip`.
+8. creates `artifacts/Chudley-win-x64-portable.zip`;
+9. when run through `./scripts/build-installer.ps1`, compiles `artifacts/Chudley-win-x64-installer.exe` from that same publish directory.
 
 Generated release output is intentionally **not committed** to source control.
 
@@ -129,7 +133,7 @@ A human should still smoke-test the ZIP from a fresh Windows 11 x64 user profile
 
 GitHub Actions runs the same packaging path for pushes to the release-development branches and for pull requests.
 
-A separate release workflow listens for a **published GitHub Release whose tag starts with `v`**, rebuilds the portable package from that tag, and attaches `Chudley-win-x64-portable.zip` to the existing release.
+A separate release workflow listens for a **published GitHub Release whose tag starts with `v`**, rebuilds both artifacts from that tag, and attaches `Chudley-win-x64-installer.exe` and `Chudley-win-x64-portable.zip` to the existing release. Inno Setup 6 is the installer technology: its stable script format gives Chudley a per-user install, Start Menu shortcut, and standard uninstall entry without adding a runtime framework. `./scripts/build-installer.ps1` finds the compiler in `.tools/inno/ISCC.exe` or a normal Inno Setup 6 installation.
 
 The workflow does **not** create or publish a release on its own.
 
@@ -144,6 +148,8 @@ The workflow does **not** create or publish a release on its own.
 | `assets/readme/` | Public-facing README artwork |
 | `scripts/validate-assets.ps1` | Verifies approved artwork hashes, dimensions, and metadata |
 | `scripts/publish-windows.ps1` | Builds, tests, publishes, validates, and packages the Windows ZIP |
+| `scripts/build-installer.ps1` | Builds the same payload plus the Inno Setup installer |
+| `scripts/test-installer.ps1` | Tests installation at the actual per-user path, Start Menu launch, payload parity, relaunch, and uninstall; requires no existing Chudley installation |
 | `.github/workflows/` | CI and release-attachment automation |
 | `THIRD_PARTY_NOTICES.md` | Character, video, meme-lineage, and rights attribution |
 
