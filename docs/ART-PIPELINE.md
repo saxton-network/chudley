@@ -42,8 +42,8 @@ Production sprites should preserve:
 
 `assets/sprites/` is reserved for approved production sprite sheets and extracted frames.
 
-Experimental generations should not be promoted into the canonical asset folders until reviewed.
+Experimental generations should not be promoted into the canonical asset folders until reviewed. The supplied production candidate is under `assets/sprites/candidate/`; its generated source images remain separate under `assets/source/generated/`.
 
 ## Current status
 
-The initial character reference exists. A refined canonical master sprite sheet is the next art deliverable.
+The original character reference and a 24-frame production candidate are imported. `manifest.json` records 20 `approved_master` frames and four `repaired_bottom_strip` frames. They remain keyframes; face, hands, scooter, props, and inbetweens need later artist review before treating this as a finished animation library.

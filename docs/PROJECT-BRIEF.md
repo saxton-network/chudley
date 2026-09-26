@@ -40,4 +40,4 @@ Avoid:
 
 ## Current phase
 
-Pre-implementation. The canonical sprite assets are still being produced and reviewed.
+Windows MVP candidate implemented with the 24 supplied keyframes. See the root README for build, controls, and current art limitations. Human Windows runtime smoke testing and artist continuity review remain release gates.
