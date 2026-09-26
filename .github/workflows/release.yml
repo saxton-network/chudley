@@ -1,0 +1,29 @@
+name: Attach Windows package to release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    if: startsWith(github.event.release.tag_name, 'v')
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Build and validate portable package
+        shell: pwsh
+        run: ./scripts/publish-windows.ps1
+      - name: Attach to existing release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: gh release upload $env:RELEASE_TAG artifacts/Chudley-win-x64-portable.zip

@@ -1,8 +1,8 @@
-name: Windows MVP CI
+name: Windows build and portable package
 
 on:
   push:
-    branches: [main, feat/windows-pet-mvp]
+    branches: [main, feat/working-chudley-replacement]
   pull_request:
 
 jobs:
@@ -13,20 +13,12 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Validate supplied assets
-        run: python tools/validate_assets.py
-      - name: Build desktop app
-        run: dotnet build src/Chudley.Desktop/Chudley.Desktop.csproj --configuration Release --warnaserror
-      - name: Run deterministic core tests
-        run: dotnet run --project tests/Chudley.Core.Tests/Chudley.Core.Tests.csproj --configuration Release
-      - name: Publish Windows application
-        run: dotnet publish src/Chudley.Desktop/Chudley.Desktop.csproj --configuration Release --runtime win-x64 --self-contained true --output publish
-      - name: Confirm published runtime frames
+      - name: Build, test, validate assets, and package
         shell: pwsh
-        run: |
-          if (!(Test-Path publish/assets/sprites/candidate/manifest.json)) { throw 'Published manifest is missing' }
-          $frames = @(Get-ChildItem publish/assets/sprites/candidate/frames -Filter *.png)
-          if ($frames.Count -ne 24) { throw "Expected 24 published frames, found $($frames.Count)" }
+        run: ./scripts/publish-windows.ps1
+      - name: Upload portable package
+        uses: actions/upload-artifact@v4
+        with:
+          name: Chudley-win-x64-portable
+          path: artifacts/Chudley-win-x64-portable.zip
+          if-no-files-found: error
