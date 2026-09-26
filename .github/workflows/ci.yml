@@ -2,7 +2,7 @@ name: 🇺🇸 Build, Test & Package Chudley
 
 on:
   push:
-    branches: [main, feat/working-chudley-replacement]
+    branches: [main, feat/chudley-windows-installer]
   pull_request:
 
 jobs:
@@ -13,12 +13,20 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
+      - name: 🏭 Install the Inno Setup compiler
+        shell: pwsh
+        run: winget install --id JRSoftware.InnoSetup -e --silent --accept-package-agreements --accept-source-agreements
       - name: 🧪 Build, test, validate assets, and package
         shell: pwsh
-        run: ./scripts/publish-windows.ps1
+        run: ./scripts/build-installer.ps1
+      - name: 🧪 Install, launch, relaunch, and uninstall the packaged pet
+        shell: pwsh
+        run: ./scripts/test-installer.ps1
       - name: 📦 Upload portable freedom package
         uses: actions/upload-artifact@v4
         with:
-          name: Chudley-win-x64-portable
-          path: artifacts/Chudley-win-x64-portable.zip
+          name: Chudley-win-x64-packages
+          path: |
+            artifacts/Chudley-win-x64-portable.zip
+            artifacts/Chudley-win-x64-installer.exe
           if-no-files-found: error
