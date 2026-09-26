@@ -1,14 +1,12 @@
 # Chudley
 
 <p align="center">
-  <img src="assets/readme/chudley.jpg" alt="Chudley on his Rascal scooter" width="320">
+  <img src="assets/readme/chudley-banner.svg" alt="Chudley banner" width="100%">
 </p>
 
 <p align="center"><strong>A tiny desktop Codex pet with entirely too much personality.</strong></p>
 
 **Status:** Windows MVP candidate. Chudley is a local desktop pet for Windows 11 x64. It displays the supplied pixel art in a transparent, always-on-top window. It idles, reacts to clicks, and occasionally plays snack, drink, wave, movement, and personality keyframe sequences. Drag him to a new position. The application makes no API calls and has no telemetry or background service.
-
-![Preview of the 24 candidate keyframes](assets/sprites/candidate/chudley-atlas-4x6.png)
 
 ## Run from source
 
