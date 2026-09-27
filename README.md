@@ -33,7 +33,7 @@ Chudley does **not** solve a business problem. Chudley is what happens when a 38
 
 ### ⭐ Current capabilities
 
-- 🎨 Verified 8×11 Codex v2 sprite atlas, with idle, working, waiting, review, failed, and directional drag animation
+- 🎨 Verified 8×11 Codex v2 sprite atlas with idle, working, waiting, review, failed, and directional drag animation
 - 🖱️ Codex's built-in pet interactions and controls
 - 🛴 A mirrored directional animation for the constitutionally protected directional adjustment
 - 📦 Two runtime files: `pet.json` and `spritesheet.webp`
@@ -50,7 +50,7 @@ Codex controls the pet's animation and behavior. This package contains no OpenAI
 3. Run the per-user installer. No administrator privileges or development tools are required.
 4. Restart Codex if it was open, then select **Chudley** in the Codex Pets menu.
 
-The installer writes the pet package to `%USERPROFILE%\.codex\pets\chudley-v2` (or `%CODEX_HOME%\pets\chudley-v2` when `CODEX_HOME` is set). License, notices, and uninstall metadata live separately under `%LOCALAPPDATA%\Programs\Chudley Codex Pet`. Windows Settings lists **Chudley for Codex** for uninstall. The installer contains no standalone `Chudley.Desktop.exe`.
+The installer writes the pet package to `%USERPROFILE%\.codex\pets\chudley-v2` (or `%CODEX_HOME%\pets\chudley-v2` when `CODEX_HOME` is set). License, notices, and uninstall metadata live separately under `%LOCALAPPDATA%\Programs\Chudley Codex Pet`. Windows Settings lists **Chudley for Codex** for uninstall.
 
 ### 🗽 Manual import ZIP
 
@@ -78,50 +78,27 @@ While being dragged, Chudley may perform a **constitutionally protected directio
 
 ## 🛠️ Department of Chudley Engineering
 
-Packaging the Codex pet requires Windows 11 x64 and Inno Setup 6. The .NET 8 SDK is needed only if you also work on the retained standalone WPF source.
+Packaging requires **Windows 11 x64**, PowerShell, and **Inno Setup 6**.
 
-Clone the repository, then run from the repository root:
+From the repository root:
 
 ```powershell
 ./scripts/validate-assets.ps1
 ./scripts/build-installer.ps1
+./scripts/test-installer.ps1
 ```
 
-The resulting `artifacts/Chudley-Codex-pet-installer.exe` and `artifacts/Chudley-Codex-pet.zip` contain the same approved Codex pet. The build script finds `ISCC.exe` in a normal Inno Setup 6 installation or accepts `-InnoCompiler`.
+`build-installer.ps1` stages only the verified Codex pet payload plus licensing/notices, produces the manual ZIP, and optionally compiles the Inno Setup installer. It finds `ISCC.exe` in a normal Inno Setup 6 installation or accepts `-InnoCompiler`.
 
-The standalone WPF source remains in `src/` for development but is **not** included in either Codex pet distribution. To build and test that source separately:
+Generated output is written under `artifacts/` and is intentionally not committed.
 
-```powershell
-dotnet restore src/Chudley.Desktop/Chudley.Desktop.csproj
-dotnet build src/Chudley.Desktop/Chudley.Desktop.csproj --configuration Release --warnaserror
-dotnet run --project tests/Chudley.Core.Tests/Chudley.Core.Tests.csproj --configuration Release
-dotnet run --project src/Chudley.Desktop/Chudley.Desktop.csproj --configuration Release
-```
-
-### 📦 Manufacture domestic Chudley
-
-Produce the Codex pet installer and manual ZIP with one command:
-
-```powershell
-./scripts/build-installer.ps1
-```
-
-That script:
-
-1. validates the approved runtime artwork;
-2. stages only `pet.json`, `spritesheet.webp`, the license, and notices;
-3. verifies the staged pet files match the approved source hashes;
-4. creates a manual-import ZIP and an Inno Setup installer from that payload.
-
-Generated release output is intentionally **not committed** to source control.
-
-`./scripts/test-installer.ps1` runs the installer lifecycle against a clean Codex pet path. It refuses to overwrite an existing Chudley pet during testing. To test locally without touching an installed pet, set `CODEX_HOME` to an isolated temporary directory for that process. The ordinary installer uses the user's actual Codex home.
+`test-installer.ps1` verifies ZIP parity, performs a real silent per-user install into a clean Codex pet path, checks installed hashes and metadata, and proves uninstall removes only Chudley's files and registration. It refuses to overwrite an existing Chudley pet.
 
 ## 🧪 Federal Quality Assurance
 
-GitHub Actions validates the Codex artwork, builds the retained .NET source, runs core tests, packages the Codex pet, and tests install/uninstall on a clean Windows runner.
+GitHub Actions validates the approved pet assets, builds the installer and manual ZIP, then exercises install/uninstall on a clean Windows runner.
 
-A separate release workflow listens for a **published GitHub Release whose tag starts with `v`**, rebuilds and tests from that tag, then attaches `Chudley-Codex-pet-installer.exe` and `Chudley-Codex-pet.zip` to the release. Inno Setup 6 provides the per-user uninstall entry without adding a runtime framework.
+A separate release workflow listens for a **published GitHub Release whose tag starts with `v`**, rebuilds and tests from that tag, then attaches `Chudley-Codex-pet-installer.exe` and `Chudley-Codex-pet.zip`.
 
 The workflow does **not** create or publish a release on its own.
 
@@ -129,17 +106,17 @@ The workflow does **not** create or publish a release on its own.
 
 | Path | Constitutional responsibility |
 | --- | --- |
-| `assets/runtime/` | Verified Codex v2 `pet.json` and spritesheet; PNG retained for source/provenance |
+| `assets/runtime/` | Verified Codex v2 metadata and sprite assets |
 | `assets/reference/` | Character/reference material; see third-party notices |
 | `assets/readme/` | Public-facing README artwork |
-| `scripts/validate-assets.ps1` | Verifies approved artwork hashes, dimensions, and metadata |
-| `scripts/build-installer.ps1` | Packages the validated Codex pet as an installer and manual ZIP |
-| `scripts/test-installer.ps1` | Tests the Codex pet path, package parity, metadata, and uninstall |
-| `src/` and `tests/` | Retained standalone WPF source and its separate tests; not distributed as the Codex pet |
+| `installer/chudley.iss` | Per-user Inno Setup installer definition |
+| `scripts/validate-assets.ps1` | Verifies approved hashes, metadata, and atlas dimensions |
+| `scripts/build-installer.ps1` | Stages and packages the Codex pet |
+| `scripts/test-installer.ps1` | Tests ZIP parity and installer lifecycle |
 | `.github/workflows/` | CI and release-attachment automation |
 | `THIRD_PARTY_NOTICES.md` | Character, video, meme-lineage, and rights attribution |
 
-The verified v2 runtime atlas uses **8×11 cells at 192×208 pixels each**. The Codex pet uses `spritesheet.webp` and `pet.json`; `spritesheet.png` remains as the pixel-identical source for the retained WPF renderer. Packaging fails if approved hashes or required dimensions no longer match.
+The verified v2 atlas uses **8×11 cells at 192×208 pixels each**. Codex consumes `spritesheet.webp` and `pet.json`. The lossless `spritesheet.png` is retained as the canonical validation/provenance counterpart and is not included in the distributed pet package.
 
 ## 📜 License: Freedom, With Extremely Specific Terms
 
@@ -171,4 +148,4 @@ Chudley is a **parody/experimental software project**.
 
 It is not affiliated with, sponsored by, or endorsed by OpenAI, Anthropic, any political campaign, political party, candidate, or any brand depicted or referenced in the artwork or documentation.
 
-The absurd patriotic presentation is part of the project's parody branding. The actual build pipeline, unfortunately, is completely serious.
+The absurd patriotic presentation is part of the project's parody branding. The actual packaging pipeline, unfortunately, is completely serious.
