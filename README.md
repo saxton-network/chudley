@@ -15,23 +15,23 @@
   <img alt="License: PolyForm Strict 1.0.0" src="https://img.shields.io/badge/license-PolyForm%20Strict%201.0.0-goldenrod">
 </p>
 
-<p align="center"><em>One meme. One scooter. An unreasonable amount of CI.</em></p>
+<p align="center"><em>One meme. One scooter. One 'Murica🇺🇸.</em></p>
 
-## 🎆 What Started It All
+## 🎆 Origin Lore:
 
-**One 38-second video. One catastrophically disproportionate software response.**
+**Flock camera footage definitely wasn't used to blackmail me into making this**
 
 https://github.com/user-attachments/assets/cc6b0d87-e352-412e-8c52-0c7b32c0d288
 
 ▶️ **[Open the repository copy](WearForbidden_video_1.mp4)**
 
-The viral AI clip that kicked this whole thing off was posted by **[@WearForbidden](https://x.com/WearForbidden)**. The broader character and mobility-scooter meme lineage predates this repository; the attribution trail and third-party rights notes live in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Orginal video posted by **[@WearForbidden](https://x.com/WearForbidden)**. The broader character and mobility-scooter meme lineage predates this repository; attribution trail and third-party rights live in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ## 🦅 What Is Chudley?
 
-Chudley is a custom pet **inside the Codex desktop app** on Windows 11 x64. The installer places his verified v2 sprite package in Codex's Pets directory. Select him in Codex's pet menu; the installer does not launch a separate desktop application.
+Chudley is a custom pet **inside the Codex desktop app** on Windows 11 x64. The installer places his verified v2 sprite package in Codex's Pets directory. Select him in Codex's pet menu; the installer does not launch a separate desktop application. **May or may not make Codex great again**
 
-Chudley does **not** solve a business problem. Chudley is what happens when a 38-second meme receives an 8×11 sprite atlas and nobody intervenes.
+Chudley does **not** solve a problem. Because he has nothing to hide. Do you?
 
 ### ⭐ Current capabilities
 
@@ -39,9 +39,9 @@ Chudley does **not** solve a business problem. Chudley is what happens when a 38
 - 🖱️ Codex's built-in pet interactions and controls
 - 🛴 A mirrored directional animation for the constitutionally protected directional adjustment
 - 📦 Two runtime files: `pet.json` and `spritesheet.webp`
-- 🚫 No separate Chudley process, .NET runtime, service, account, or telemetry
+- 🚫 No separate Chudley process, .NET runtime, service, account, liberalism, or telemetry
 
-Codex controls the pet's animation and behavior. This package contains no OpenAI API key, authentication, or network client.
+Codex controls the pet's animation and behavior. This package contains no OpenAI API key, authentication, or network client. It does however contain FREEDOM™️
 
 ## 🇺🇸 Acquire Chudley
 
@@ -66,7 +66,7 @@ Both formats contain the same verified pet metadata and artwork. The ZIP also in
 
 For the installer, uninstall **Chudley for Codex** from Windows Settings. For the manual ZIP, remove only the `chudley-v2` folder you extracted. Restart Codex to refresh its pet menu.
 
-Other Codex pets and Codex settings are outside Chudley's installer scope.
+Other Codex pets and Codex settings are outside Chudley's installer scope....for now
 
 ## 🎮 Rules of Engagement
 
@@ -134,11 +134,11 @@ Third-party media, character/reference material, and other works the project doe
 
 ## 🧾 Credit Where Credit Is Due
 
-Chudley exists because internet culture has no adult supervision.
+Chudley exists because America is Great Again
 
 The repository preserves credit for:
 
-- the documented older MAGA Wojak meme lineage, whose true original creator is uncertain;
+- the documented older MAGA Wojak meme lineage, whose true original creator is uncertain but likely a true patriot 
 - **[@WearForbidden](https://x.com/WearForbidden)** for the viral AI video that directly inspired this project;
 - **[@normposter](https://x.com/normposter)** for an early documented mobility-scooter adaptation in the meme's September 2026 spread.
 
@@ -146,8 +146,8 @@ Details and source references are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICE
 
 ## 🏛️ Mandatory Government Disclaimer
 
-Chudley is a **parody/experimental software project**.
+Chudley is a very serious mascot of sorts 
 
-It is not affiliated with, sponsored by, or endorsed by OpenAI, Anthropic, any political campaign, political party, candidate, or any brand depicted or referenced in the artwork or documentation.
+It is not affiliated with communism, socialism, democrats, or ANTIFA
 
-The absurd patriotic presentation is part of the project's parody branding. The actual packaging pipeline, unfortunately, is completely serious.
+He is however affiliated with red, white, and blue real Americans and making this country Great Again
