@@ -21,7 +21,9 @@
 
 **One 38-second video. One catastrophically disproportionate software response.**
 
-▶️ **[Watch the original viral clip](WearForbidden_video_1.mp4)**
+https://github.com/user-attachments/assets/cc6b0d87-e352-412e-8c52-0c7b32c0d288
+
+▶️ **[Open the repository copy](WearForbidden_video_1.mp4)**
 
 The viral AI clip that kicked this whole thing off was posted by **[@WearForbidden](https://x.com/WearForbidden)**. The broader character and mobility-scooter meme lineage predates this repository; the attribution trail and third-party rights notes live in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
