@@ -1,7 +1,9 @@
+
+
 # Chudley
 
 <p align="center">
-  <img src="assets/readme/chudley-banner.svg" alt="Chudley banner" width="100%">
+  <img width="1280" height="640" alt="banner" src="https://github.com/user-attachments/assets/fb2dc3a1-3972-4467-b65a-b100068ddad4" />
 </p>
 
 <p align="center"><strong>🇺🇸 Freedom. 🇺🇸</strong></p>
