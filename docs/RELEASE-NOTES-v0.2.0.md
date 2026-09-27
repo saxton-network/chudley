@@ -21,4 +21,4 @@ The verified Codex v2 atlas provides idle, working, waiting, review, failed, and
 
 ## License and notices
 
-Project-authored material is governed by the PolyForm Strict License 1.0.0. Third-party character, video, and reference material is separately described in `THIRD_PARTY_NOTICES.md` and is not sublicensed by this release. The original video is not included in the installer or ZIP.
+The current source repository now offers project-authored material under the MIT License. The original v0.2.0 release artifacts may still contain the license text packaged at the time they were published. Third-party character, video, and reference material is separately described in `THIRD_PARTY_NOTICES.md` and is not sublicensed by MIT. The original video is not included in the installer or ZIP.
