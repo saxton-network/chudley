@@ -13,7 +13,7 @@
 <p align="center">
   <img alt="Windows 11 x64" src="https://img.shields.io/badge/Windows-11%20x64-0078D4?logo=windows11&logoColor=white">
   <img alt="Codex pet v2" src="https://img.shields.io/badge/Codex-pet%20v2-512BD4">
-  <img alt="License: PolyForm Strict 1.0.0" src="https://img.shields.io/badge/license-PolyForm%20Strict%201.0.0-goldenrod">
+  <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-goldenrod">
 </p>
 
 <p align="center"><img width="192" height="208" alt="chudley-all-frames" src="https://github.com/user-attachments/assets/ad5197e1-c3e8-4cd8-8b87-eddf70ed2f57" /><em>One meme. One scooter. One 'Murica🗽.</em><img width="192" height="208" alt="chudley-all-frames" src="https://github.com/user-attachments/assets/ad5197e1-c3e8-4cd8-8b87-eddf70ed2f57" /></p>
@@ -132,17 +132,17 @@ The workflow does **not** create or publish a release on its own.
 
 The verified v2 atlas uses **8×11 cells at 192×208 pixels each**. Codex consumes `spritesheet.webp` and `pet.json`. The lossless `spritesheet.png` is retained as the canonical validation/provenance counterpart and is not included in the distributed pet package.
 
-## 📜 License: Freedom, With Extremely Specific Terms
+## 📜 License: Actual Open Source This Time
 
-Project-authored Chudley software is offered under the **[PolyForm Strict License 1.0.0](LICENSE)**.
+Project-authored Chudley software and original project material are offered under the **[MIT License](LICENSE)**.
 
-In plain English: the license permits covered **noncommercial use**, but it does **not** grant permission to redistribute the software or create changes/new works based on it. Commercial use is not a permitted purpose under this license.
+In plain English: you may use it, fork it, modify it, redistribute it, include it in other projects, and use it commercially, provided the MIT copyright and permission notice stay with copies or substantial portions of the licensed material.
 
-That makes this project **source-available, not open source**.
+That makes the project-authored portion of Chudley **open source**.
 
 The official license text in [LICENSE](LICENSE) controls. This summary is only a convenience and does not replace the license.
 
-Third-party media, character/reference material, and other works the project does not own are **not sublicensed** merely because they appear in this repository. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for the attribution and scope boundary.
+Third-party media, character/reference material, and other works the project does not own are **not relicensed under MIT** merely because they appear in this repository. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for the attribution and scope boundary.
 
 ## 🧾 Credit Where Credit Is Due
 
