@@ -1,4 +1,4 @@
-# 🇺🇸 Chudley has secured his rightful place in Codex
+# 🗽 Chudley has secured his rightful place in Codex
 
 This release corrects the installation target. Chudley now installs **inside the Codex desktop app's Pets menu**, not as a separate Windows desktop application.
 

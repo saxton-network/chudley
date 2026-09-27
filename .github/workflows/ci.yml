@@ -1,4 +1,4 @@
-name: 🇺🇸 Build, Test & Package Chudley
+name: 🗽 Build, Test & Package Chudley
 
 on:
   push:
