@@ -2,7 +2,7 @@
 
 Chudley is a software project built around an existing internet-meme character lineage. The project does not claim exclusive ownership of that underlying meme character, third-party source material, or third-party media.
 
-The PolyForm Strict License 1.0.0 in [LICENSE](LICENSE) applies to project-authored software and other original project material only to the extent the project has the rights to license that material. It does not sublicense third-party works identified here.
+The PolyForm Noncommercial License 1.0.0 in [LICENSE](LICENSE) applies to project-authored software and other original project material only to the extent the project has the rights to license that material. It does not sublicense third-party works identified here.
 
 ## Character and meme lineage
 
@@ -29,7 +29,7 @@ Credit and source:
 - @WearForbidden: <https://x.com/WearForbidden>
 - Original post: <https://x.com/i/status/2095188850767282357>
 
-The video is **not** offered under the Chudley PolyForm Strict license by this repository. Any copyright or other rights in that video remain with the applicable rights holder or rights holders.
+The video is **not** offered under the Chudley PolyForm Noncommercial license by this repository. Any copyright or other rights in that video remain with the applicable rights holder or rights holders.
 
 ## Mobility-scooter adaptation
 
