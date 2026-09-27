@@ -13,7 +13,7 @@
 <p align="center">
   <img alt="Windows 11 x64" src="https://img.shields.io/badge/Windows-11%20x64-0078D4?logo=windows11&logoColor=white">
   <img alt="Codex pet v2" src="https://img.shields.io/badge/Codex-pet%20v2-512BD4">
-  <img alt="License: PolyForm Strict 1.0.0" src="https://img.shields.io/badge/license-PolyForm%20Strict%201.0.0-goldenrod">
+  <img alt="License: PolyForm Noncommercial 1.0.0" src="https://img.shields.io/badge/license-PolyForm%20Noncommercial%201.0.0-goldenrod">
 </p>
 
 <p align="center"><img width="192" height="208" alt="chudley-all-frames" src="https://github.com/user-attachments/assets/ad5197e1-c3e8-4cd8-8b87-eddf70ed2f57" /><em>One meme. One scooter. One 'Murica🗽.</em><img width="192" height="208" alt="chudley-all-frames" src="https://github.com/user-attachments/assets/ad5197e1-c3e8-4cd8-8b87-eddf70ed2f57" /></p>
@@ -132,13 +132,15 @@ The workflow does **not** create or publish a release on its own.
 
 The verified v2 atlas uses **8×11 cells at 192×208 pixels each**. Codex consumes `spritesheet.webp` and `pet.json`. The lossless `spritesheet.png` is retained as the canonical validation/provenance counterpart and is not included in the distributed pet package.
 
-## 📜 License: Freedom, With Extremely Specific Terms
+## 📜 License: Freedom, Without Monetization
 
-Project-authored Chudley software is offered under the **[PolyForm Strict License 1.0.0](LICENSE)**.
+Project-authored Chudley software is offered under the **[PolyForm Noncommercial License 1.0.0](LICENSE)**.
 
-In plain English: the license permits covered **noncommercial use**, but it does **not** grant permission to redistribute the software or create changes/new works based on it. Commercial use is not a permitted purpose under this license.
+In plain English: for **noncommercial purposes**, you can use it, fork it, modify it, make new works from it, and redistribute your original or modified copies. What this license does **not** grant is permission to use Chudley for a commercial purpose or anticipated commercial application.
 
-That makes this project **source-available, not open source**.
+That still makes this project **source-available, not open source**, because the noncommercial restriction is intentional.
+
+If you redistribute Chudley or a modified version, keep the license terms or their URL with the copy as required by the license.
 
 The official license text in [LICENSE](LICENSE) controls. This summary is only a convenience and does not replace the license.
 
