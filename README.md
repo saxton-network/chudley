@@ -21,7 +21,11 @@
 
 **Flock camera footage definitely wasn't used to blackmail me into making this**
 
+<div align="center">
+
 https://github.com/user-attachments/assets/cc6b0d87-e352-412e-8c52-0c7b32c0d288
+
+</div>
 
 ▶️ **[Open the repository copy](WearForbidden_video_1.mp4)**
 
