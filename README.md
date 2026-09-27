@@ -1,5 +1,4 @@
 
-
 # Chudley
 
 <p align="center">
@@ -17,7 +16,7 @@
   <img alt="License: PolyForm Strict 1.0.0" src="https://img.shields.io/badge/license-PolyForm%20Strict%201.0.0-goldenrod">
 </p>
 
-<p align="center"><em>One meme. One scooter. One 'Murica🇺🇸.</em></p>
+<p align="center"><img width="192" height="208" alt="chudley-all-frames" src="https://github.com/user-attachments/assets/ad5197e1-c3e8-4cd8-8b87-eddf70ed2f57" /><em>One meme. One scooter. One 'Murica🇺🇸.</em><img width="192" height="208" alt="chudley-all-frames" src="https://github.com/user-attachments/assets/ad5197e1-c3e8-4cd8-8b87-eddf70ed2f57" /></p>
 
 ## 🎆 Origin Lore:
 
