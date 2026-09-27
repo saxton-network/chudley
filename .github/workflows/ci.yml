@@ -2,7 +2,7 @@ name: 🇺🇸 Build, Test & Package Chudley
 
 on:
   push:
-    branches: [main, feat/codex-pet-installer]
+    branches: [main]
   pull_request:
 
 jobs:
@@ -10,22 +10,10 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 8.0.x
-      - name: 🧪 Keep the standalone source buildable
-        shell: pwsh
-        run: |
-          dotnet restore src/Chudley.Desktop/Chudley.Desktop.csproj
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          dotnet build src/Chudley.Desktop/Chudley.Desktop.csproj --configuration Release --no-restore --warnaserror
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          dotnet run --project tests/Chudley.Core.Tests/Chudley.Core.Tests.csproj --configuration Release
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: 🏭 Install the Inno Setup compiler
         shell: pwsh
         run: winget install --id JRSoftware.InnoSetup -e --silent --accept-package-agreements --accept-source-agreements
-      - name: 🧪 Validate and package the Codex pet
+      - name: 📦 Build and validate Codex pet packages
         shell: pwsh
         run: ./scripts/build-installer.ps1
       - name: 🧪 Install and uninstall from Codex's Pets directory

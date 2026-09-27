@@ -1,20 +1,12 @@
-# .NET outputs and local IDE state
-**/bin/
-**/obj/
+# Generated packages and local tooling
+artifacts/
+.tools/
+
+# Local editor state
 .vs/
 .vscode/
 *.user
 *.suo
-TestResults/
-publish/
-artifacts/
-.tools/
-
-# Python caches and local application state
-__pycache__/
-*.py[cod]
-*.local.json
-settings.json
 
 # OS/editor files
 .DS_Store
