@@ -5,7 +5,7 @@
   <img width="1280" height="640" alt="banner" src="https://github.com/user-attachments/assets/fb2dc3a1-3972-4467-b65a-b100068ddad4" />
 </p>
 
-<p align="center"><strong>🇺🇸 Freedom. 🇺🇸</strong></p>
+<p align="center"><strong>🗽 Freedom. 🗽</strong></p>
 <p align="center"><strong>🎆 Fireworks. 🎆</strong></p>
 <p align="center"><strong>🤖 Codex. 🤖</strong></p>
 <p align="center"><strong>🦅 Chudley. 🦅</strong></p>
@@ -16,7 +16,7 @@
   <img alt="License: PolyForm Strict 1.0.0" src="https://img.shields.io/badge/license-PolyForm%20Strict%201.0.0-goldenrod">
 </p>
 
-<p align="center"><img width="192" height="208" alt="chudley-all-frames" src="https://github.com/user-attachments/assets/ad5197e1-c3e8-4cd8-8b87-eddf70ed2f57" /><em>One meme. One scooter. One 'Murica🇺🇸.</em><img width="192" height="208" alt="chudley-all-frames" src="https://github.com/user-attachments/assets/ad5197e1-c3e8-4cd8-8b87-eddf70ed2f57" /></p>
+<p align="center"><img width="192" height="208" alt="chudley-all-frames" src="https://github.com/user-attachments/assets/ad5197e1-c3e8-4cd8-8b87-eddf70ed2f57" /><em>One meme. One scooter. One 'Murica🗽.</em><img width="192" height="208" alt="chudley-all-frames" src="https://github.com/user-attachments/assets/ad5197e1-c3e8-4cd8-8b87-eddf70ed2f57" /></p>
 
 ## 🎆 Origin Lore:
 
@@ -48,9 +48,16 @@ Chudley does **not** solve a problem. Because he has nothing to hide. Do you?
 
 Codex controls the pet's animation and behavior. This package contains no OpenAI API key, authentication, or network client. It does however contain FREEDOM™️
 
-## 🇺🇸 Acquire Chudley
+## 🛠️ Planned fixes
 
-### 🇺🇸 Recommended: Installer
+Current visual bugs already on the repair list:
+
+- 🧩 Hand-fix individual sprite-frame pixels and small artwork defects frame by frame.
+- 🫧 Fix the mobile versions' bubbled appearance so they match the intended Chudley sprite style more closely.
+
+## 🗽 Acquire Chudley
+
+### 🗽 Recommended: Installer
 
 1. Open the [latest GitHub release](https://github.com/saxton-network/chudley/releases/latest).
 2. Download **`Chudley-Codex-pet-installer.exe`**.
